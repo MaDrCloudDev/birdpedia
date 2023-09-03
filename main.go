@@ -1,3 +1,5 @@
+// keeping tutorial comments for clarity
+
 package main
 
 import (
@@ -45,6 +47,3 @@ func main() {
 func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello World!")
 }
-
-// keeping tutorial comments for clarity
-// coded along to https://www.sohamkamani.com/golang/how-to-build-a-web-application/#full-stack-
