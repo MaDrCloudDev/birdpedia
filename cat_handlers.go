@@ -6,16 +6,16 @@ import (
 	"net/http"
 )
 
-type Bird struct {
+type cat struct {
 	Species     string `json:"species"`
 	Description string `json:"description"`
 }
 
-var birds []Bird
+var cats []cat
 
 func getBirdHandler(w http.ResponseWriter, r *http.Request) {
-	//Convert the "birds" variable to json
-	birdListBytes, err := json.Marshal(birds)
+	//Convert the "cats" variable to json
+	birdListBytes, err := json.Marshal(cats)
 
 	// If there is an error, print it to the console, and return a server
 	// error response to the user
@@ -24,13 +24,13 @@ func getBirdHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
-	// If all goes well, write the JSON list of birds to the response
+	// If all goes well, write the JSON list of cats to the response
 	w.Write(birdListBytes)
 }
 
 func createBirdHandler(w http.ResponseWriter, r *http.Request) {
-	// Create a new instance of Bird
-	bird := Bird{}
+	// Create a new instance of cat
+	cat := cat{}
 
 	// We send all our data as HTML form data
 	// the `ParseForm` method of the request, parses the
@@ -44,12 +44,12 @@ func createBirdHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Get the information about the bird from the form info
-	bird.Species = r.Form.Get("species")
-	bird.Description = r.Form.Get("description")
+	// Get the information about the cat from the form info
+	cat.Species = r.Form.Get("species")
+	cat.Description = r.Form.Get("description")
 
-	// Append our existing list of birds with a new entry
-	birds = append(birds, bird)
+	// Append our existing list of cats with a new entry
+	cats = append(cats, cat)
 
 	//Finally, we redirect the user to the original HTMl page
 	// (located at `/assets/`), using the http libraries `Redirect` method

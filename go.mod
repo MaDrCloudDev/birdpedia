@@ -1,4 +1,4 @@
-module github.com/madrclouddev/birdpedia
+module github.com/madrclouddev/catpedia
 
 go 1.18
 

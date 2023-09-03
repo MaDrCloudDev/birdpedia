@@ -29,8 +29,8 @@ func newRouter() *mux.Router {
 	// with "/assets/", instead of the absolute route itself
 	r.PathPrefix("/assets/").Handler(staticFileHandler).Methods("GET")
 	// These lines are added inside the newRouter() function before returning r
-	r.HandleFunc("/bird", getBirdHandler).Methods("GET")
-	r.HandleFunc("/bird", createBirdHandler).Methods("POST")
+	r.HandleFunc("/cat", getBirdHandler).Methods("GET")
+	r.HandleFunc("/cat", createBirdHandler).Methods("POST")
 
 	return r
 }
