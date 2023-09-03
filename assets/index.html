@@ -41,7 +41,7 @@
     and add them to our existing table
    -->
   <script>
-    birdTable = document.querySelector("table")
+    catTable = document.querySelector("table")
 
     /*
     Use the browsers `fetch` API to make a GET call to /cat
@@ -54,9 +54,9 @@
     */
     fetch("/cat")
       .then(response => response.json())
-      .then(birdList => {
+      .then(catList => {
         //Once we fetch the list, we iterate over it
-        birdList.forEach(cat => {
+        catList.forEach(cat => {
           // Create the table row
           row = document.createElement("tr")
 
@@ -71,7 +71,7 @@
           row.appendChild(species)
           row.appendChild(description)
           // Finally, add the row element to the table itself
-          birdTable.appendChild(row)
+          catTable.appendChild(row)
         })
       })
   </script>

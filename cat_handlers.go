@@ -13,9 +13,9 @@ type cat struct {
 
 var cats []cat
 
-func getBirdHandler(w http.ResponseWriter, r *http.Request) {
+func getCatHandler(w http.ResponseWriter, r *http.Request) {
 	//Convert the "cats" variable to json
-	birdListBytes, err := json.Marshal(cats)
+	catListBytes, err := json.Marshal(cats)
 
 	// If there is an error, print it to the console, and return a server
 	// error response to the user
@@ -25,10 +25,10 @@ func getBirdHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// If all goes well, write the JSON list of cats to the response
-	w.Write(birdListBytes)
+	w.Write(catListBytes)
 }
 
-func createBirdHandler(w http.ResponseWriter, r *http.Request) {
+func createCatHandler(w http.ResponseWriter, r *http.Request) {
 	// Create a new instance of cat
 	cat := cat{}
 
