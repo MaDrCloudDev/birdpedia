@@ -2,31 +2,34 @@
 <html lang="en">
 
 <head>
- <title>The cat encyclopedia</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>The Encyclopedia of Birds</title>
 </head>
 
 <body>
-  <h1>The cat encyclopedia</h1>
-  <!--
-    This section of the document specifies the table that will
-    be used to display the list of cats and their description
+  <h1>The Encyclopedia of Birds</h1>
+  <!-- 
+    This section defines the table that will be used 
+    to present a list of birds along with their descriptions.
    -->
   <table>
     <tr>
       <th>Species</th>
       <th>Description</th>
     </tr>
-    <td>American Short Hair</td>
-    <td>Common in cities</td>
+    <td>Pigeon</td>
+    <td>Commonly found in cities</td>
     </tr>
   </table>
   <br/>
 
-  <!--
-    This section contains the form, that will be used to hit the
-    `POST /cat` API that we will build in the next section
+  <!-- 
+    This section contains a form that will be utilized to make 
+    a POST request to the `/bird` API we'll develop in the next section.
    -->
-  <form action="/cat" method="post">
+  <form action="/bird" method="post">
     Species:
     <input type="text" name="species">
     <br/> Description:
@@ -35,44 +38,44 @@
     <input type="submit" value="Submit">
   </form>
 
-  <!--
-    Finally, the last section is the script that will
-    run on each page load to fetch the list of cats
-    and add them to our existing table
+  <!-- 
+    Finally, this last section involves a script that executes 
+    on each page load. It retrieves the list of birds and appends 
+    them to our existing table.
    -->
   <script>
-    catTable = document.querySelector("table")
+    birdTable = document.querySelector("table")
 
     /*
-    Use the browsers `fetch` API to make a GET call to /cat
-    We expect the response to be a JSON list of cats, of the
-    form :
+    Utilize the browser's `fetch` API to perform a GET request to /bird.
+    We anticipate the response to be a JSON array of birds, structured as follows:
     [
       {"species":"...","description":"..."},
       {"species":"...","description":"..."}
     ]
     */
-    fetch("/cat")
+    fetch("/bird")
       .then(response => response.json())
-      .then(catList => {
-        //Once we fetch the list, we iterate over it
-        catList.forEach(cat => {
-          // Create the table row
+      .then(birdList => {
+        // After obtaining the list, we iterate through it
+        birdList.forEach(bird => {
+          // Create a table row
           row = document.createElement("tr")
 
-          // Create the table data elements for the species and
-					// description columns
+          // Generate table data elements for the species and description columns
           species = document.createElement("td")
-          species.innerHTML = cat.species
+          species.innerHTML = bird.species
           description = document.createElement("td")
-          description.innerHTML = cat.description
+          description.innerHTML = bird.description
 
           // Add the data elements to the row
           row.appendChild(species)
           row.appendChild(description)
-          // Finally, add the row element to the table itself
-          catTable.appendChild(row)
+          // Finally, append the row element to the table
+          birdTable.appendChild(row)
         })
       })
   </script>
 </body>
+
+</html>

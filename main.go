@@ -1,5 +1,3 @@
-// keeping tutorial comments for clarity
-
 package main
 
 import (
@@ -9,41 +7,42 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// The new router function creates the router and
-// returns it to us. We can now use this function
-// to instantiate and test the router outside of the main function
+// The newRouter function creates and returns the router.
+// This function allows us to create and test the router independently of the main function.
 func newRouter() *mux.Router {
 	r := mux.NewRouter()
 	r.HandleFunc("/hello", handler).Methods("GET")
 
-	// Declare the static file directory and point it to the
-	// directory we just made
+	// Define the static file directory and set it to the recently created directory.
 	staticFileDirectory := http.Dir("./assets/")
-	// Declare the handler, that routes requests to their respective filename.
-	// The fileserver is wrapped in the `stripPrefix` method, because we want to
-	// remove the "/assets/" prefix when looking for files.
-	// For example, if we type "/assets/index.html" in our browser, the file server
-	// will look for only "index.html" inside the directory declared above.
-	// If we did not strip the prefix, the file server would look for
-	// "./assets/assets/index.html", and yield an error
+	// Declare the handler, which routes requests to their respective filenames.
+	// The file server is enclosed within the `stripPrefix` method to remove the "/assets/" prefix
+	// when searching for files. For instance, if we enter "/assets/index.html" in the browser,
+	// the file server will only look for "index.html" within the specified directory.
+	// Without stripping the prefix, the file server would search for "./assets/assets/index.html," causing an error.
 	staticFileHandler := http.StripPrefix("/assets/", http.FileServer(staticFileDirectory))
-	// The "PathPrefix" method acts as a matcher, and matches all routes starting
-	// with "/assets/", instead of the absolute route itself
+	// The "PathPrefix" method serves as a matcher, matching all routes that start with "/assets/"
+	// rather than the exact route itself.
 	r.PathPrefix("/assets/").Handler(staticFileHandler).Methods("GET")
-	// These lines are added inside the newRouter() function before returning r
-	r.HandleFunc("/cat", getCatHandler).Methods("GET")
-	r.HandleFunc("/cat", createCatHandler).Methods("POST")
 
+	r.HandleFunc("/bird", getBirdHandler).Methods("GET")
+	r.HandleFunc("/bird", createBirdHandler).Methods("POST")
 	return r
 }
 
 func main() {
-	// The router is now formed by calling the `newRouter` constructor function
-	// that we defined above. The rest of the code stays the same
+	// The router is now created by invoking the `newRouter` constructor function
+	// defined above. The rest of the code remains unchanged.
 	r := newRouter()
-	http.ListenAndServe(":8080", r)
+	err := http.ListenAndServe(":8080", r)
+	if err != nil {
+		panic(err.Error())
+	}
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello World!")
 }
+
+// go build
+// ./birdpedia
