@@ -1,6 +1,6 @@
 MIT License
 
-Code-along to [how to build a web application](https://www.sohamkamani.com/golang/how-to-build-a-web-application/#full-stack-), with the author's comments retained for now. One of the better blogs/tutorials I've read, check it out.
+Code-along to [how to build a web application](https://www.sohamkamani.com/golang/how-to-build-a-web-application/#full-stack-). One of the better blogs/tutorials I've read, check it out.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
